@@ -40,7 +40,7 @@ This project integrates diverse components to automate data preprocessing, model
 
 This project requires the following dependencies:
 
-- **Programming Language**: Python 3.11  
+- **Programming Language**: Python 3.12  
 - **Package Manager**: pip
 
 ---
@@ -66,7 +66,7 @@ Hier is je bijgewerkte **`Installation`** sectie inclusief het aanmaken van een 
 3. **Create and activate a Conda environment**:
 
    ```bash
-   conda create -n venv python=3.10
+   conda create -n venv python=3.12
    conda activate venv
    ```
 
