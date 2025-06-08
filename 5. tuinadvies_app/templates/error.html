@@ -1,0 +1,30 @@
+<!-- templates/error.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        .error-box {
+            background-color: #ffebee;
+            border: 1px solid #f44336;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Er is een fout opgetreden</h1>
+    <div class="error-box">
+        <p>{{ error_message }}</p>
+        <p>Controleer of je CSV-bestand de juiste kolommen bevat.</p>
+        <a href="/">Terug naar home</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ontdek Tuinen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e9f5ec;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        #card-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 550px;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+            transform-style: preserve-3d;
+            cursor: grab;
+            user-select: none;
+            overflow-y: auto;
+        }
+        .card:active {
+            cursor: grabbing;
+        }
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .no-image-placeholder {
+            height: 250px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: #666;
+            font-style: italic;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #2E7D32;
+        }
+        .card p {
+            margin: 8px 0;
+        }
+        .buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .dislike {
+            background-color: #f44336;
+            color: white;
+        }
+        .like {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .progress-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .progress-text {
+            margin-bottom: 5px;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .no-more {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            padding: 30px 20px;
+            max-width: 400px;
+            margin: 40px auto;
+        }
+        .no-more h2 {
+            margin-bottom: 10px;
+        }
+        .no-more p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .btn-overzicht {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #388E3C;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .btn-overzicht:hover {
+            background-color: #2e7031;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Ontdek Tuinen</h1>
+        <p>Swipe of klik om tuinen te beoordelen</p>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-text">Voortgang: <span id="progress-count">0</span>/{{ tuinen|length }}</div>
+        <div class="progress-bar">
+            <div class="progress" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <div id="card-container">
+        {% for tuin in tuinen %}
+            <div class="card" data-id="{{ tuin.id }}" style="z-index: {{ loop.revindex }}; {% if loop.index > 1 %}display: none;{% endif %}">
+                {% if tuin.afbeelding_url %}
+                    <img src="{{ tuin.afbeelding_url }}" class="card-image" alt="{{ tuin.tuin_naam }}">
+                {% else %}
+                    <div class="no-image-placeholder">
+                        <span>Geen afbeelding beschikbaar</span>
+                    </div>
+                {% endif %}
+                <h2>{{ tuin.tuin_naam }}</h2>
+                <p><strong>Stijl:</strong> {{ tuin.stijl }}</p>
+                <p><strong>Planten:</strong> {{ tuin.planten }}</p>
+                <p><strong>Onderhoud:</strong> {{ tuin.onderhoudsniveau }}</p>
+                <p><strong>Biodiversiteit:</strong> {{ tuin.biodiversiteit_score }}/10</p>
+                <p><strong>Beschrijving:</strong> {{ tuin.tuin_bio }}</p>
+            </div>
+        {% endfor %}
+
+        {% if not tuinen %}
+            <div class="no-more">
+                <h2>Geen tuinen meer om te beoordelen!</h2>
+                <p>Je hebt alle tuinen beoordeeld.</p>
+                <a href="/overzicht?gebruiker_id={{ gebruiker_id }}" class="btn-overzicht">
+                    Bekijk je overzicht
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if tuinen %}
+    <div class="buttons">
+        <button class="btn dislike" onclick="handleDislike()">✖</button>
+        <button class="btn like" onclick="handleLike()">✔</button>
+    </div>
+    {% endif %}
+
+    <script>
+        const cards = Array.from(document.querySelectorAll('.card'));
+        let currentCardIndex = 0;
+        let startX, startY, moveX, moveY;
+        let isDragging = false;
+        const progressCount = document.getElementById('progress-count');
+        const progressBar = document.getElementById('progress-bar');
+        const totalCards = {{ tuinen|length }};
+        const gebruikerId = "{{ gebruiker_id }}";
+
+        function updateProgress() {
+            progressCount.textContent = currentCardIndex;
+            const progressPercent = totalCards === 0 ? 100 : Math.round((currentCardIndex / totalCards) * 100);
+            progressBar.style.width = `${progressPercent}%`;
+        }
+
+        function showNextCard() {
+            if (currentCardIndex < cards.length - 1) {
+                cards[currentCardIndex].style.display = 'none';
+                currentCardIndex++;
+                cards[currentCardIndex].style.display = 'block';
+                updateProgress();
+            } else {
+                // Alle kaarten zijn beoordeeld
+                const buttonsDiv = document.querySelector('.buttons');
+                if (buttonsDiv) buttonsDiv.style.display = 'none';
+
+                const container = document.getElementById('card-container');
+                container.innerHTML = `
+                    <div class="no-more">
+                        <h2>Geen tuinen meer om te beoordelen!</h2>
+                        <p>Je hebt alle tuinen beoordeeld.</p>
+                        <a href="/overzicht?gebruiker_id=${gebruikerId}" class="btn-overzicht">
+                            Bekijk je overzicht
+                        </a>
+                    </div>
+                `;
+                updateProgress();
+            }
+        }
+
+        function sendFeedback(tuinId, beoordeling) {
+            fetch('/tuinen', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `tuin_id=${tuinId}&beoordeling=${beoordeling}&gebruiker_id=${gebruikerId}`
+            });
+        }
+
+        function swipeCard(direction) {
+            const currentCard = cards[currentCardIndex];
+            const tuinId = currentCard.dataset.id;
+            
+            currentCard.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+            currentCard.style.transform = `translateX(${direction === 'right' ? 200 : -200}px) rotate(${direction === 'right' ? 20 : -20}deg)`;
+            currentCard.style.opacity = '0';
+            
+            sendFeedback(tuinId, direction === 'right' ? 'like' : 'dislike');
+            
+            setTimeout(() => {
+                showNextCard();
+            }, 300);
+        }
+
+        function handleLike() {
+            swipeCard('right');
+        }
+
+        function handleDislike() {
+            swipeCard('left');
+        }
+
+        // Touch en drag events voor swipe functionaliteit
+        cards.forEach(card => {
+            card.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                card.style.transition = 'none';
+            });
+
+            card.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                moveX = e.touches[0].clientX - startX;
+                moveY = e.touches[0].clientY - startY;
+                card.style.transform = `translateX(${moveX}px) rotate(${moveX / 20}deg)`;
+                card.style.opacity = Math.max(1 - Math.abs(moveX) / 200, 0.5);
+            });
+
+            card.addEventListener('touchend', (e) => {
+                isDragging = false;
+                if (Math.abs(moveX) > 100) {
+                    swipeCard(moveX > 0 ? 'right' : 'left');
+                } else {
+                    card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                    card.style.transform = 'translateX(0) rotate(0)';
+                    card.style.opacity = '1';
+                }
+            });
+        });
+
+        // Init progress bar
+        updateProgress();
+    </script>
+</body>
+</html>

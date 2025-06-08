@@ -1,0 +1,12 @@
+Tijdstip,Gebruiker_ID,Voornaam,Tussenvoegsel,Achternaam,Leeftijd,Geslacht,Provincie,Latitude,Longitude,Ervaring met tuinieren (jaren),Soort woning,Tuinstijl,Onderhoudsniveau,Allergieën,Huisdieren,Budget
+2025-05-19 00:03:03,270206,SS,,,23,Man,South Holland,51.9225,4.4792,5,Appartement,Modern,Laag,Pollen,Hond,
+2025-05-19 00:05:08,270206,SS,,,23,Man,South Holland,51.9225,4.4792,5,Appartement,Klassiek,Gemiddeld,Bijengif,Konijn,
+2025-05-19 00:12:04,270206,SS,,,23,Man,South Holland,51.9225,4.4792,5,Appartement,,,,,
+2025-05-19 00:13:06,249568,Sven,,Satimin,23,Man,South Holland,51.9225,4.4792,5,Appartement,,,,,
+2025-05-19 00:14:40,249568,sven,,satimin,23,Man,South Holland,51.9225,4.4792,5,Appartement,,,,,
+2025-05-19 10:23:19,249568,sven,,satimin,23,Man,South Holland,51.9225,4.4792,5,Appartement,Modern,Laag,Pollen,Hond,
+2025-05-19 10:26:16,249568,sven,,satimin,23,Man,South Holland,51.9225,4.4792,6,Appartement,Klassiek,Hoog,Bijengif,Hond,5600.0
+2025-05-19 10:28:49,249568,sven,,satimin,23,Man,South Holland,51.9225,4.4792,7,Appartement,Klassiek,Hoog,Grassen,Kat,
+2025-05-19 15:18:28,249568,sven,,satimin,23,Man,South Holland,51.9225,4.4792,0,Appartement,Klassiek,Gemiddeld,Bijengif,Hond,
+2025-05-21 12:09:55,249568,sven,,satimin,23,Man,Onbekend,51.90326569690521,4.506409961966057,5,Appartement,Modern,Laag,,Hond,
+2025-05-21 12:13:48,249568,sven,,satimin,23,Man,Onbekend,51.90326569690521,4.506409961966057,23,Appartement,,,,,

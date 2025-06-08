@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gebruikersformulier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .message {
+            text-align: center;
+            color: green;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Gebruikersformulier</h1>
+
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+
+        <form method="post">
+            <label>Naam:</label>
+            <input type="text" name="naam" required>
+
+            <label>Postcode:</label>
+            <input type="text" name="postcode" required>
+
+            <label>Geboortejaar:</label>
+            <select name="geboortejaar">
+                {% for jaar in jaren %}
+                    <option value="{{ jaar }}">{{ jaar }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Ervaring met tuinieren (jaren):</label>
+            <input type="number" name="ervaring" min="0">
+
+            <label>Geslacht:</label>
+            <select name="geslacht">
+                <option value="Man">Man</option>
+                <option value="Vrouw">Vrouw</option>
+                <option value="Anders">Anders</option>
+            </select>
+
+            <label>Soort woning:</label>
+            <select name="woning" required>
+                <option value="">Kies een soort woning</option>
+                <option value="Appartement">Appartement</option>
+                <option value="Tussenwoning">Tussenwoning</option>
+                <option value="Hoekwoning">Hoekwoning</option>
+                <option value="2-onder-1-kap">2-onder-1-kap</option>
+                <option value="Vrijstaand">Vrijstaand</option>
+            </select>
+
+            <label>Tuinoppervlakte (m²):</label>
+            <input type="number" name="tuinoppervlakte" min="0" required>
+            
+            <br><br>
+            <center>
+                <h2>Voorkeuren voor de tuin</h2>
+            </center>
+
+            <label>Huisdieren:</label><br>
+            <input type="checkbox" name="huisdieren" value="Hond">Hond<br>
+            <input type="checkbox" name="huisdieren" value="Kat">Kat<br>
+            <input type="checkbox" name="huisdieren" value="Geen">Geen<br>
+
+            <label>Tuinstijl:</label><br>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px 30px;">
+                <input type="checkbox" name="tuinstijl" value="Modern"> Modern
+                <input type="checkbox" name="tuinstijl" value="Klassiek"> Klassiek
+                <input type="checkbox" name="tuinstijl" value="Tropisch"> Tropisch
+                <input type="checkbox" name="tuinstijl" value="Mediterrane"> Mediterrane
+                <input type="checkbox" name="tuinstijl" value="Engels"> Engels
+                <input type="checkbox" name="tuinstijl" value="Japanse"> Japanse
+                <input type="checkbox" name="tuinstijl" value="Bohemian"> Bohemian
+                <input type="checkbox" name="tuinstijl" value="Minimalistisch"> Minimalistisch
+                <input type="checkbox" name="tuinstijl" value="Landelijk"> Landelijk
+            </div>
+
+            <label>Onderhoudsniveau:</label><br>
+            <input type="checkbox" name="onderhoudsniveau" value="Laag (1 tot 3 uurtjes)">Laag (1 tot 3 uurtjes)<br>
+            <input type="checkbox" name="onderhoudsniveau" value="Gemiddeld (3 tot 5 uurtjes)">Gemiddeld (3 tot 5 uurtjes)<br>
+            <input type="checkbox" name="onderhoudsniveau" value="Hoog (5+ uurtjes)">Hoog (5+ uurtjes)<br>
+
+            <label>Allergieën:</label><br>
+            <input type="checkbox" name="allergie" value="Graspollen">Graspollen<br>
+            <input type="checkbox" name="allergie" value="Bijen">Bijen<br>
+            <input type="checkbox" name="allergie" value="Bomen">Bomen<br>
+            <input type="checkbox" name="allergie" value="Bloemen">Bloemen<br>
+            <input type="checkbox" name="allergie" value="Geen">Geen<br>
+
+            <label>Voorkeursplanten:</label><br>
+            <input type="checkbox" name="voorkeursplanten" value="Rozen">Rozen<br>
+            <input type="checkbox" name="voorkeursplanten" value="Lavendel">Lavendel<br>
+            <input type="checkbox" name="voorkeursplanten" value="Zonnebloemen">Zonnebloemen<br>
+            <input type="checkbox" name="voorkeursplanten" value="Tulpen">Tulpen<br>
+            <input type="checkbox" name="voorkeursplanten" value="Geen">Geen<br>
+
+            <label>Budget:</label>
+            <input type="text" name="budget">
+
+            <input type="submit" value="Verzenden">
+        </form>
+    </div>
+</body>
+</html>

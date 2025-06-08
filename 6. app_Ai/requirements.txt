@@ -1,0 +1,8 @@
+Flask
+pandas
+numpy
+python-dateutil
+timezonefinder
+meteostat
+pvlib
+geocoder
