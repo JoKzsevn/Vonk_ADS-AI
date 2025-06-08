@@ -1,5 +1,3 @@
-Hier is de bijbehorende `README.md` in markdown op basis van jouw screenshot:
-
 ````markdown
 # VONK_ADS-AI
 
