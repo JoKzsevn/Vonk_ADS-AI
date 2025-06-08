@@ -1,4 +1,3 @@
-````markdown
 # VONK_ADS-AI
 
 > Empowering intelligence decisions through seamless AI integration.
@@ -51,7 +50,7 @@ This project requires the following dependencies:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/JoKzsevn/Vonk_ADS-AI.git
-````
+
 
 2. **Navigate to the project directory**:
 
