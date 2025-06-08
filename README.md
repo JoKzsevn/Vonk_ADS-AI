@@ -45,12 +45,17 @@ This project requires the following dependencies:
 
 ---
 
-## Installation
+Hier is je bijgewerkte **`Installation`** sectie inclusief het aanmaken van een Conda-omgeving:
+
+---
+
+## 🛠️ Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/JoKzsevn/Vonk_ADS-AI.git
-
+   ```
 
 2. **Navigate to the project directory**:
 
@@ -58,7 +63,14 @@ This project requires the following dependencies:
    cd Vonk_ADS-AI
    ```
 
-3. **Install the dependencies**:
+3. **Create and activate a Conda environment**:
+
+   ```bash
+   conda create -n venv python=3.10
+   conda activate venv
+   ```
+
+4. **Install the dependencies**:
    Using `pip`:
 
    ```bash
