@@ -76,24 +76,3 @@ Hier is je bijgewerkte **`Installation`** sectie inclusief het aanmaken van een 
    ```bash
    pip install -r src/_utilities/requirements.txt -r Evaluation/requirements_test.txt
    ```
-
----
-
-## Usage
-
-From the project’s root:
-
-```bash
-python3 [entrypoint]
-```
-
----
-
-## Testing
-
-VONK\_ADS-AI uses the `unittest` framework. Run the test suite with:
-
-```bash
-python3 -m unittest discover -s Evaluation/tests
-```
-
